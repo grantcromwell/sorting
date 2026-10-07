@@ -26,7 +26,8 @@
     void PrintArray(int array[], int size){
         for (int i = 0; i < size; i++)
             {
-                printf("%d,", array[i]);
+
+                printf("%d ", array[i]);
             }
         printf("\n");
     }
@@ -53,7 +54,7 @@
         waiting("\nTime Complexity = O(n^2)\n");
     }
 
-    void merge(int arraydef[], int left, int mid, int right) {
+    void merge(int arraydef[], int left, int mid, int right, int *steps) {
         int leftSize = mid - left + 1;
         int rightSize = right - mid;
         int leftarrayDef[leftSize];
@@ -77,6 +78,7 @@
                 arraydef[k] = rightarrayDef[j];
                 j++;
             }
+            (*steps)++;
             k++;
         }
 
@@ -84,43 +86,50 @@
             arraydef[k] = leftarrayDef[i];
             i++;
             k++;
+            (*steps)++;
         }
 
         while (j < rightSize) {
             arraydef[k] = rightarrayDef[j];
             j++;
             k++;
+            (*steps)++;
         }
     
     }
 
-    void mergeSortRecursive(int arrayDef[], int left, int right) {
+    void mergeSortRecursive(int arrayDef[], int left, int right, int *steps) {
         if (left >= right) {
             return;
         }
 
         int mid = left + (right - left) / 2;
-        mergeSortRecursive(arrayDef, left, mid);
-        mergeSortRecursive(arrayDef, mid + 1, right);
-        merge(arrayDef, left, mid, right);
+        mergeSortRecursive(arrayDef, left, mid, steps);
+        mergeSortRecursive(arrayDef, mid + 1, right, steps);
+        merge(arrayDef, left, mid, right, steps);
     }
 
     void mergeSort(int arrayDef[], int size) {
         printf("Merge Sort commencing"); 
         fflush(stdout);
+        int steps = 0;
         dots();
         printf("\n");
-        mergeSortRecursive(arrayDef, 0, size - 1);
+        mergeSortRecursive(arrayDef, 0, size - 1, &steps);
         PrintArray(arrayDef, size);
         fflush(stdout);
         dots();
-        printf("Time Complexity = O(n log n)\n");
+        printf("\n");
+        printf("Steps taken %d", steps);
+        printf("\nTime Complexity = O(n log n)\n");
     }
 
     void greedySort(int arrayDef[], int size) {
         printf("\nGreedy Sort");
         fflush(stdout);
         dots();
+        printf("\n");
+        int steps = 0;
         for (int i = 0; i < size - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < size; j++) {
@@ -131,10 +140,12 @@
             if (minIndex != i) {
                 swap(&arrayDef[i], &arrayDef[minIndex]);
             }
+            steps += 1;
         }
         PrintArray(arrayDef, size);
         fflush(stdout);
         dots();
+        printf("\nSteps taken %d", steps);
         printf("\nTime Complexity = O(n log n)\n");
 
     }
