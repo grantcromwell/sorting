@@ -5,7 +5,7 @@
         printf("%s", msg);
         fflush(stdout);
         usleep(500000);
-    };
+    }
 
 
 
@@ -42,9 +42,10 @@
         int steps = 0;
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
+                steps += 1;
                 if (arraydef[j] > arraydef[j + 1]) {
                     swap(&arraydef[j], &arraydef[j + 1]);
-                    steps += 1;
+            
                 }
             }
         }
@@ -62,10 +63,12 @@
 
         for (int i = 0; i < leftSize; i++) {
             leftarrayDef[i] = arraydef[left + i];
+         
         }
 
         for (int j = 0; j < rightSize; j++) {
             rightarrayDef[j] = arraydef[mid + 1 + j];
+        
         }
 
         int i = 0, j = 0, k = left;
@@ -74,11 +77,13 @@
             if (leftarrayDef[i] <= rightarrayDef[j]) {
                 arraydef[k] = leftarrayDef[i];
                 i++;
+                (*steps) += 1;
             } else {
                 arraydef[k] = rightarrayDef[j];
                 j++;
+                (*steps) += 1;
             }
-            (*steps)++;
+           
             k++;
         }
 
@@ -86,14 +91,16 @@
             arraydef[k] = leftarrayDef[i];
             i++;
             k++;
-            (*steps)++;
+            
+            
         }
 
         while (j < rightSize) {
             arraydef[k] = rightarrayDef[j];
             j++;
             k++;
-            (*steps)++;
+            
+            
         }
     
     }
@@ -133,14 +140,17 @@
         for (int i = 0; i < size - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < size; j++) {
+                steps += 1;
                 if (arrayDef[j] < arrayDef[minIndex]) {
                     minIndex = j;
+                    
                 }
             }
             if (minIndex != i) {
                 swap(&arrayDef[i], &arrayDef[minIndex]);
+                
             }
-            steps += 1;
+            
         }
         PrintArray(arrayDef, size);
         fflush(stdout);
@@ -167,6 +177,7 @@
         case 3:
             greedySort(array, size);
         break;
+        
 
       
     }
