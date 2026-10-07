@@ -74,14 +74,15 @@
         int i = 0, j = 0, k = left;
 
         while (i < leftSize && j < rightSize) {
+            (*steps) += 1;
             if (leftarrayDef[i] <= rightarrayDef[j]) {
                 arraydef[k] = leftarrayDef[i];
                 i++;
-                (*steps) += 1;
+                
             } else {
                 arraydef[k] = rightarrayDef[j];
                 j++;
-                (*steps) += 1;
+                
             }
            
             k++;
@@ -156,7 +157,7 @@
         fflush(stdout);
         dots();
         printf("\nSteps taken %d", steps);
-        printf("\nTime Complexity = O(n log n)\n");
+        printf("\nTime Complexity = O(n^2)\n");
 
     }
 
@@ -196,7 +197,7 @@ int main(){
     int choice;
     printf("Hello User!");
     fflush(stdout);
-    waiting("\n.");
+    waiting("\n");
     dots();
     printf("\n");
     orignalArray(5, 99);
