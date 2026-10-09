@@ -132,14 +132,15 @@
         printf("\nTime Complexity = O(n log n)\n");
     }
 
-    void greedySort(int arrayDef[], int size) {
-        printf("\nGreedy Sort");
+    void selectionSort(int arrayDef[], int size) {
+        printf("\nSelection Sort");
         fflush(stdout);
         dots();
         printf("\n");
         int steps = 0;
         for (int i = 0; i < size - 1; i++) {
             int minIndex = i;
+
             for (int j = i + 1; j < size; j++) {
                 steps += 1;
                 if (arrayDef[j] < arrayDef[minIndex]) {
@@ -157,7 +158,7 @@
         fflush(stdout);
         dots();
         printf("\nSteps taken %d", steps);
-        printf("\nTime Complexity = O(n^2)\n");
+        printf("\nTime Complexity = O(n^2 + 1)\n");
 
     }
 
@@ -176,7 +177,7 @@
             mergeSort(array, size);
         break;
         case 3:
-            greedySort(array, size);
+            selectionSort(array, size);
         break;
         
 
@@ -203,7 +204,7 @@ int main(){
     orignalArray(5, 99);
     waiting("\n1: Bubblesort");
     waiting("\n2: Merge Sort");
-    waiting("\n3: Greedy Sort\n");
+    waiting("\n3: Selection Sort\n");
     waiting("Choose your favorite algorithm:\n");
     scanf("%d", &choice);
     orignalArray(5, choice);
