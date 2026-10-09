@@ -158,11 +158,11 @@
         fflush(stdout);
         dots();
         printf("\nSteps taken %d", steps);
-        printf("\nTime Complexity = O(n^2 + 1)\n");
+        printf("\nTime Complexity = O(n^2)\n");
 
     }
 
-    void orignalArray(int size, int choice) {
+    void originalArray(int size, int choice) {
             int array [5] = {99, 17 , 11, 97, 1};
             for (int nums = 0; nums < size; nums++) {
                 printf("%d ", array[nums]);
@@ -179,6 +179,9 @@
         case 3:
             selectionSort(array, size);
         break;
+        case 4:
+            PrintArray(array, size);
+            break;
         
 
       
@@ -201,13 +204,13 @@ int main(){
     waiting("\n");
     dots();
     printf("\n");
-    orignalArray(5, 99);
+    originalArray(5, 0);
     waiting("\n1: Bubblesort");
     waiting("\n2: Merge Sort");
     waiting("\n3: Selection Sort\n");
     waiting("Choose your favorite algorithm:\n");
     scanf("%d", &choice);
-    orignalArray(5, choice);
+    originalArray(5, choice);
     
 
 
